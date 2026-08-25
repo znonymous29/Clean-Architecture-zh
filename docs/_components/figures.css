@@ -1,0 +1,22 @@
+.figure .fg {
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin: 0 auto;
+  width: 100%;
+}
+
+html.dark .figure .fg {
+  border-color: #666;
+}
+
+.figure .fgimg {
+  padding: 4px 24px 0;
+  text-align: center;
+}
+
+.figure .fgtitle {
+  text-align: center;
+  font-weight: bold;
+}
