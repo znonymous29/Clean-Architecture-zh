@@ -1,0 +1,67 @@
+/* ===== 中英对照切换（配合 rehype-translation 插件） ===== */
+
+/* 英文原文默认隐藏 */
+.en-source {
+  display: none;
+}
+
+/* 展开后的英文原文：灰调斜体 + 左侧细线，与中文正文区分 */
+.en-source.en-visible {
+  display: block;
+  color: var(--rp-c-text-3);
+  font-style: italic;
+  font-size: 0.95em;
+  border-left: 2px solid var(--rp-c-divider-light);
+  padding-left: 1rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+/* 中文片段：可点击，左侧指示线 + hover 背景提示 */
+.zh-trans {
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  padding-left: 0.75rem;
+  margin-left: calc(-0.75rem - 3px); /* 抵消内边距，保持与正文对齐 */
+  border-radius: 0 6px 6px 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  outline: none;
+}
+
+.zh-trans:hover {
+  background-color: var(--rp-c-bg-soft);
+  border-left-color: var(--rp-c-divider-light);
+}
+
+.zh-trans:focus-visible {
+  border-left-color: var(--rp-c-divider);
+}
+
+/* 展开状态：指示线高亮为品牌色 */
+.zh-trans.zh-expanded {
+  border-left-color: var(--rp-c-brand, #7c3aed);
+}
+
+/* ===== 章首漫画等独立插图：居中直接展示 ===== */
+
+.chapter-fig {
+  margin: 1.5rem 0;
+}
+
+/* 主题 preflight 将 img 设为 display: block，需用 margin auto 居中 */
+.chapter-fig img {
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--rp-radius-small);
+}
+
+/* blockquote 转 div 后，内部段落边距收敛 */
+.zh-trans p {
+  margin: 0.3rem 0;
+}
+
+/* 展开的英文列表/表格容器保持自身排版 */
+.en-source.en-visible ul,
+.en-source.en-visible ol {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}

@@ -1,6 +1,6 @@
 # Chap8. OCP: THE OPEN-CLOSED PRINCIPLE OCP：开闭原则
 
-![](/figures/un/CH-UN08.jpg)
+![打开的盒子](/figures/un/CH-UN08.jpg)
 
 The Open-Closed Principle (OCP) was coined in 1988 by Bertrand Meyer.1 It says:
 
@@ -52,7 +52,7 @@ By applying the SRP, we might come up with the data-flow view shown in Figure 8.
 
 > 利用 SRP，我们可以按图 8.1 中所展示的方式来处理数据流。即先用一段分析程序处理原始的财务数据，以形成报表的数据结构，最后再用两个不同的报表生成器来产生报表。
 
-<Figures figure="8-1">Applying the SRP</Figures>
+<Figures figure="8-1">SRP 的应用</Figures>
 
 The essential insight here is that generating the report involves two separate responsibilities: the calculation of the reported data, and the presentation of that data into a web- and printer-friendly form.
 
@@ -66,7 +66,7 @@ We accomplish this by partitioning the processes into classes, and separating th
 
 > 在具体实现上，我们会将整个程序进程划分成一系列的类，然后再将这些类分割成不同的组件。下面，我们用图 8.2 中的那些双线框来具体描述一下整个实现。在这个图中，左上角的组件是 Controller，右上角是 Interactor，右下角是 Database，左下角则有四个组件分别用于代表不同的 Presenter 和 View。
 
-<Figures figure="8-2">Partitioning the processes into classes and separating the classes into components</Figures>
+<Figures figure="8-2">将流程拆分为类，再将类划分为组件</Figures>
 
 Classes marked with `<I>` are interfaces; those marked with `<DS>` are data structures. Open arrowheads are using relationships. Closed arrowheads are implements or inheritance relationships.
 
@@ -80,7 +80,7 @@ The next thing to notice is that each double line is crossed in one direction on
 
 > 其次，这里很重要的一点是这些双线框的边界都是单向跨越的。也就是说，上图中所有组件之间的关系都是单向依赖的，如图 8.3 所示，图中的箭头都指向那些我们不想经常更改的组件。
 
-<Figures figure="8-3">The component relationships are unidirectional</Figures>
+<Figures figure="8-3">组件间的依赖关系是单向的</Figures>
 
 Let me say that again: If component A should be protected from changes in component B, then component B should depend on component A.
 

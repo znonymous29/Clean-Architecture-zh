@@ -1,6 +1,6 @@
 # Chap25. LAYERS AND BOUNDARIES 层次与边界
 
-![](/figures/un/CH-UN25.jpg)
+![层层叠叠](/figures/un/CH-UN25.jpg)
 
 It is easy to think of systems as being composed of three components: UI, business rules, and database. For some simple systems, this is sufficient. For most systems, though, the number of components is larger than that.
 
@@ -24,7 +24,7 @@ If the source code dependencies are properly managed, as shown in Figure 25.1, t
 
 > 如果我们能管理好源码中的依赖关系，就应该像图 25.1 所展示的那样，多个 UI 组件复用同一套游戏业务逻辑。而游戏的业务逻辑组件不知道，也不必知道 UI 正在使用哪一种自然语言。
 
-<Figures figure="25-1">Any number of UI components can reuse the game rules</Figures>
+<Figures figure="25-1">任意数量的 UI 组件都可以复用游戏规则</Figures>
 
 Let’s also assume that the state of the game is maintained on some persistent store—perhaps in flash, or perhaps in the cloud, or maybe just in RAM. In any of those cases, we don’t want the game rules to know the details. So, again, we’ll create an API that the game rules can use to communicate with the data storage component.
 
@@ -34,7 +34,7 @@ We don’t want the game rules to know anything about the different kinds of dat
 
 > 由于我们不会希望让游戏的业务逻辑依赖于不同种类的数据存储，所以这里的设计也要合理地遵守依赖关系原则，这样的话，该游戏的结构应如图 25.2 所示。
 
-<Figures figure="25-2">Following the Dependency Rule</Figures>
+<Figures figure="25-2">遵循依赖规则</Figures>
 
 ## CLEAN ARCHITECTURE? 可否采用整洁架构
 
@@ -50,7 +50,7 @@ That means that there is a potential architectural boundary defined by this axis
 
 > 这就意味着这类变更应该有一个对应的架构边界。也许我们需要构造一个 API，以便将语言部分与通信部分隔开，这样一来，该设计的结构应如图 25.3 所示。
 
-<Figures figure="25-3">The revised diagram</Figures>
+<Figures figure="25-3">修改后的关系图</Figures>
 
 The diagram in Figure 25.3 has gotten a little complicated, but should contain no surprises. The dashed outlines indicate abstract components that define an API that is implemented by the components above or below them. For example, the Language API is implemented by English and Spanish.
 
@@ -80,7 +80,7 @@ We can simplify this diagram by eliminating all the variations and focusing on j
 
 > 我们可以去掉所有的具体实现类，只保留 API 组件来进一步简化上面这张设计图，其简化的结果如图 25.4 所示。
 
-<Figures figure="25-4">Simplified diagram</Figures>
+<Figures figure="25-4">简化后的关系图</Figures>
 
 Notice that the diagram is oriented in Figure 25.4 so that all the arrows point up. This puts GameRules at the top. This orientation makes sense because GameRules is the component that contains the highest-level policies.
 
@@ -104,7 +104,7 @@ Are there always two data streams as in this example? No, not at all. Imagine th
 
 > 那么，这个例子中是否永远只有这两条数据流呢？当然不是。假设我们现在要在网络上与多个其他玩家一起玩这个游戏，就会需要一个网络组件，如图 25.5 所示。这样一来，我们有了三条数据流，它们都由 GameRules 组件所控制。
 
-<Figures figure="25-5">Adding a network component</Figures>
+<Figures figure="25-5">添加网络组件</Figures>
 
 So, as systems become more complex, the component structure may split into many such streams.
 
@@ -124,7 +124,7 @@ But there is another set of policies at an even higher level—policies that kno
 
 > 但是，游戏中还有一组更高层次的策略——这些策略负责了解玩家的血量，以及每个事件的后果和影响。这些策略既可以让玩家逐渐损失血量，也可能由于发现事物而增加血量。总而言之，游戏的低层策略会负责向高层策略传递事件，例如 FoundFood 和 FelllnPito 而高层组件则要管理玩家状态（如图 25.6 所示），最终该策略将会决定玩家在游戏中的输赢。
 
-<Figures figure="25-6">The higher-level policy manages the player</Figures>
+<Figures figure="25-6">高层策略管理玩家</Figures>
 
 Is this an architectural boundary? Do we need an API that separates MoveManagement from PlayerManagement? Well, let’s make this a bit more interesting and add micro-services.
 
@@ -138,7 +138,7 @@ The diagram in Figure 25.7 depicts this scenario in a somewhat abbreviated fashi
 
 > 在图 25.7 中，我们为该游戏绘制了一个简化版的设计图。现实中的 Network 组件通常会比图中的更复杂一些 但这里的已经足够说明情况了。在图中，可以看到 MoveMangament PlayerManagment 之间存在一个完整的系统架构边界。
 
-<Figures figure="25-7">Adding a micro-service API</Figures>
+<Figures figure="25-7">添加微服务 API</Figures>
 
 ## CONCLUSION 本章小结
 

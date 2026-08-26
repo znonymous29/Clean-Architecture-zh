@@ -1,6 +1,6 @@
 # Chap27. SERVICES: GREAT AND SMALL 服务：宏观与微观
 
-![](/figures/un/CH-UN27.jpg)
+![宏观与微观](/figures/un/CH-UN27.jpg)
 
 Service-oriented “architectures” and micro-service “architectures” have become very popular of late. The reasons for their current popularity include the following:
 
@@ -84,7 +84,7 @@ The diagram in Figure 27.1 shows how our fictitious architects arranged services
 
 > 这个虚构系统的架构如图 27.1 所示，整个系统都是依靠服务来构建的。TaxiUI 服务负责与用户打交道，用户会通过移动设备向它下订单。TaxiFinder 服务负责调用不同的 TaxiSupplier 服务来获取可用车辆的信息，并且找出可用的出租车以作为可推荐项。这些可推荐项会短期地被固化成一条数据记录，与用户信息挂钩。TaxiSelector 服务则负责根据用户所选择的价格、时间、豪华程度等条件从可选项中筛选结果，最后这些结果会被传递给 TaxiDispatcher 服务，由它负责分派订单。
 
-<Figures figure="27-1">Services arranged to implement the taxi aggregator system</Figures>
+<Figures figure="27-1">实现打车聚合系统的服务划分</Figures>
 
 Now let us suppose that this system has been in operation for more than a year. Our staff of developers have been happily developing new features while maintaining and operating all these services.
 
@@ -144,7 +144,7 @@ Thus the Kitty feature is decoupled, and independently developable and deployabl
 
 > 这样一来，运送猫咪的功能就与系统的其他部分实现了解耦，可以实现独立开发和部署了。
 
-<Figures figure="27-2">Using an object-oriented approach to deal with cross-cutting concerns</Figures>
+<Figures figure="27-2">用面向对象的方法处理横切关注点</Figures>
 
 ## COMPONENT-BASED SERVICES 基于组件的服务
 
@@ -160,7 +160,7 @@ The service diagram in Figure 27.3 shows the structure. The services still exist
 
 > 这种服务的架构如图 27.3 所示。我们可以看到，在该架构中服务仍然和之前一样，但是每个服务中都增加了内部组件结构，以便使用衍生类来添加新功能，而这些衍生类都有各自所生存的组件。
 
-<Figures figure="27-3">Each service has its own internal component design, enabling new features to be added as new derivative classes</Figures>
+<Figures figure="27-3">每个服务都有自己的内部组件设计，新功能以新派生类的形式加入</Figures>
 
 ## CROSS-CUTTING CONCERNS 横跨型变更
 
@@ -172,7 +172,7 @@ To deal with the cross-cutting concerns that all significant systems face, servi
 
 > 为了处理这个所有大型系统都会遇到的横跨型变更问题，我们必须在服务内部采用遵守依赖关系原则的组件设计方式，如图 27.4 所示。总而言之，服务边界并不能代表系统的架构边界，服务内部的组件边界才是。
 
-<Figures figure="27-4">Services must be designed with internal component architectures that follow the Dependency Rule</Figures>
+<Figures figure="27-4">服务内部必须按照依赖规则来设计组件架构</Figures>
 
 ## CONCLUSION 本章小结
 

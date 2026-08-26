@@ -1,22 +1,33 @@
+.figure {
+  margin: 1.5rem 0;
+}
+
 .figure .fg {
-  border-radius: 6px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: black;
+  border: 1px solid var(--rp-c-divider-light);
+  border-radius: var(--rp-radius-small);
+  background: var(--rp-c-bg-soft);
+  box-shadow: var(--rp-shadow-2);
   margin: 0 auto;
   width: 100%;
+  padding: 12px;
+  overflow: hidden;
 }
 
-html.dark .figure .fg {
-  border-color: #666;
-}
-
-.figure .fgimg {
-  padding: 4px 24px 0;
-  text-align: center;
+/* 主题 preflight 将 img 设为 display: block，需用 margin auto 居中 */
+.figure .fgimg img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
 }
 
 .figure .fgtitle {
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--rp-c-text-2);
+  margin-top: 0.75rem;
+}
+
+.figure .fgtitle p {
+  margin: 0;
 }

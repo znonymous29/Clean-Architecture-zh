@@ -1,6 +1,6 @@
 # Chap22. THE CLEAN ARCHITECTURE 整洁架构
 
-![](/figures/un/CH-UN22.jpg)
+![打翻的墨水](/figures/un/CH-UN22.jpg)
 
 Over the last several decades we’ve seen a whole range of ideas regarding the architecture of systems. These include:
 
@@ -42,7 +42,7 @@ The diagram in Figure 22.1 is an attempt at integrating all these architectures 
 
 > 下面我们要通过图 22.1 将上述所有架构的设计理念综合成为一个独立的理念。
 
-<Figures figure="22-1">The clean architecture</Figures>
+<Figures figure="22-1">整洁架构</Figures>
 
 ## THE DEPENDENCY RULE 依赖关系规则
 
@@ -158,7 +158,7 @@ The diagram in Figure 22.2 shows a typical scenario for a web-based Java system 
 
 > 接下来，我们将会在图 22.2 中看到一个基于 Web 的使用数据库的 Java 系统。在该系统中，Web 服务器会从用户那里收集信息，并将它们交给左上角的 controller。然后，controller 将这些信息包装成一个简单的 Java 对象，并让该对象穿越 InputBoundary 被传递到 UseCaseInteractor。接下来，我们会让 UseCaseInteractor 解析数据，并通过它来控制与 Entities 的交互。同时，我们还会用 DataAccessInterface 将 Entities 需要用到的数据从 Database 加载到内存中。随后，UseCaselnteractor 会负责从 Entities 收集数据，并将 OutputData 组装成另一个简单的 Java 对象。最后，OutputData 会穿越 OutputBoundary 被传递给 Presenter。
 
-<Figures figure="22-2">A typical scenario for a web-based Java system utilizing a database</Figures>
+<Figures figure="22-2">使用数据库的 Web 版 Java 系统的典型场景</Figures>
 
 The job of the Presenter is to repackage the OutputData into viewable form as the ViewModel, which is yet another plain old Java object. The ViewModel contains mostly Strings and flags that the View uses to display the data. Whereas the OutputData may contain Date objects, the Presenter will load the ViewModel with corresponding Strings already formatted properly for the user. The same is true of Currency objects or any other business-related data. Button and MenuItem names are placed in the ViewModel, as are flags that tell the View whether those Buttons and MenuItems should be gray.
 

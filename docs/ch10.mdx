@@ -1,12 +1,12 @@
 # Chap10. ISP: THE INTERFACE SEGREGATION PRINCIPLE ISP：接口隔离原则
 
-![](/figures/un/CH-UN10.jpg)
+![各执一词](/figures/un/CH-UN10.jpg)
 
 The Interface Segregation Principle (ISP) derives its name from the diagram shown in Figure 10.1.
 
 > “接口隔离原则（ISP）”这个名字来自图 10.1 所示的这种软件结构。
 
-<Figures figure="10-1">The Interface Segregation Principle</Figures>
+<Figures figure="10-1">接口隔离原则</Figures>
 
 In the situation illustrated in Figure 10.1, there are several users who use the operations of the OPS class. Let’s assume that User1 uses only op1, User2 uses only op2, and User3 uses only op3.
 
@@ -22,7 +22,7 @@ Again, if we imagine that this is implemented in a statically typed language lik
 
 > 这个问题可以通过将不同的操作隔离成接口来解决，具体如图 10.2 所示。同样，我们也假设这个例子是用 Java 这种静态类型语言来实现的，那么现在 User1 的源代码会依赖于 U1Ops 和 op1，但不会依赖于 OPS。这样一来，我们之后对 OPS 做的修改只要不影响到 User1 的功能，就不需要重新编译和部署 User1 了。
 
-<Figures figure="10-2">Segregated operations</Figures>
+<Figures figure="10-2">隔离后的操作</Figures>
 
 ## ISP AND LANGUAGE ISP 与编程语言
 
@@ -48,7 +48,7 @@ Consider, for example, an architect working on a system, S. He wants to include 
 
 > 例如，我们假设某位软件架构师在设计系统 S 时，想要在该系统中引入某个框架 F。这时候，假设框架 F 的作者又将其捆绑在一个特定的数据库 D 上，那么就形成了 S 依赖于 F，F 又依赖于 D 的关系（参见图 10.3）。
 
-<Figures figure="10-3">A problematic architecture</Figures>
+<Figures figure="10-3">一个有问题的架构</Figures>
 
 Now suppose that D contains features that F does not use and, therefore, that S does not care about. Changes to those features within D may well force the redeployment of F and, therefore, the redeployment of S. Even worse, a failure of one of the features within D may cause failures in F and S.
 

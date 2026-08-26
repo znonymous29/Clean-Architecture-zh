@@ -1,6 +1,6 @@
 # Chap34. THE MISSING CHAPTER 拾遗
 
-![](/figures/un/CH-UN34.jpg)
+![读书的困惑](/figures/un/CH-UN34.jpg)
 
 By Simon Brown
 
@@ -36,7 +36,7 @@ In this typical layered architecture, we have one layer for the web code, one la
 > - OrdersRepository：定义如何访问订单持久信息的接口。
 > - JdbcOrderRepository：持久信息访问接口的实现。
 
-<Figures figure="34-1">Package by layer</Figures>
+<Figures figure="34-1">按层分包</Figures>
 
 In “Presentation Domain Data Layering,”2 Martin Fowler says that adopting such a layered architecture is a good way to get started. He’s not alone. Many of the books, tutorials, training courses, and sample code you’ll find will also point you down the path of creating a layered architecture. It’s a very quick way to get something up and running without a huge amount of complexity. The problem, as Martin points out, is that once your software grows in scale and complexity, you will quickly find that having three large buckets of code isn’t sufficient, and you will need to think about modularizing further.
 
@@ -60,7 +60,7 @@ I often see software development teams realize that they have problems with hori
 
 > 软件研发团队常常一开始采用水平分层方式（即 “按层封装”），遇到困难后再切换到垂直分层方式（即 “按功能封装”）。我认为，两种方式都很不好。看完本书，你应该意识到还有更好的分类方式——没错。
 
-<Figures figure="34-2">Package by feature</Figures>
+<Figures figure="34-2">按功能分包</Figures>
 
 ## PORTS AND ADAPTERS 端口和适配器
 
@@ -68,7 +68,7 @@ As Uncle Bob has said, approaches such as “ports and adapters,” the “hexag
 
 > 如 Bob 大叔所说，通过采用“端口和适配器”“六边形架构”“边界、控制器、实体”等，我们可以创造出一个业务领域代码与具体实现细节（数据库、框架等）隔离的架构。总结下来，如图 34.3 所示，我们可以区分出代码中的内部代码（领域，Domain）与外部代码（基础设施，Infrastructure）。
 
-<Figures figure="34-3">A code base with an inside and an outside</Figures>
+<Figures figure="34-3">有内外之分的代码库</Figures>
 
 The “inside” region contains all of the domain concepts, whereas the “outside” region contains the interactions with the outside world (e.g., UIs, databases, third-party integrations). The major rule here is that the “outside” depends on the “inside”—never the other way around. Figure 34.4 shows a version of how the “view orders” use case might be implemented.
 
@@ -78,7 +78,7 @@ The `com.mycompany.myapp.domain` package here is the “inside,” and the other
 
 > 这里 `com.mycompnay.myapp.domain` 包是内部代码，另外一个包是外部代码。注意这里的依赖关系是由外向内的。眼尖的读者可以注意到之前的 OrderRepository 类现在被改名为 Orders。这个概念基于领域驱动设计理念，其中要求内部代码都应该用独特的领域语言来描述。换句话说，我们在业务领域里面讨论的应该是 Orders，而不是“OrdersRepository”。
 
-<Figures figure="34-4">View orders use case</Figures>
+<Figures figure="34-4">查看订单用例</Figures>
 
 It’s also worth pointing out that this is a simplified version of what the UML class diagram might look like, because it’s missing things like interactors and objects to marshal the data across the dependency boundaries.
 
@@ -110,7 +110,7 @@ While the new use case works, it’s perhaps not implemented in the way that we 
 
 > 虽然新的业务用例可以正常工作，但是它可能不是按照合理方式实现的。作为咨询师，我曾经见过很多团队出现这种情况，只有他们开始仔细观察自己的代码结构图时才会发现。
 
-<Figures figure="34-5">Relaxed layered architecture</Figures>
+<Figures figure="34-5">宽松的分层架构</Figures>
 
 What we need here is a guideline—an architectural principle—that says something like, “Web controllers should never access repositories directly.” The question, of course, is enforcement. Many teams I’ve met simply say, “We enforce this principle through good discipline and code reviews, because we trust our developers.” This confidence is great to hear, but we all know what happens when budgets and deadlines start looming ever closer.
 
@@ -136,7 +136,7 @@ Components are the units of deployment. They are the smallest entities that can 
 
 > 组件是部署单元。组件是系统中能够部署的最小单位，对应在 Java 里就是 jar 文件。
 
-<Figures figure="34-6">View orders use case</Figures>
+<Figures figure="34-6">查看订单用例</Figures>
 
 My definition of a component is slightly different: “A grouping of related functionality behind a nice clean interface, which resides inside an execution environment like an application.” This definition comes from my “C4 software architecture model,”7 which is a simple hierarchical way to think about the static structures of a software system in terms of containers, components, and classes (or code). It says that a software system is made up of one or more containers (e.g., web applications, mobile apps, stand-alone applications, databases, file systems), each of which contains one or more components, which in turn are implemented by one or more classes (or code). Whether each component resides in a separate jar file is an orthogonal concern.
 
@@ -170,7 +170,7 @@ The access modifiers in Java are not perfect,8 but ignoring them is just asking 
 
 > 虽然 Java 中的访问修饰符并不完美，但是忽略它们的存存就是在自找麻烦。Java 类与包的组织形式其实可以很大程度决定这个类的可访问性（或者不可访问性）。如果我们将包的概念引入这幅图，同时标记（虚化的形式展示）应用到访问控制符的地方，这个图就很有意思了（参见图 34.8）。
 
-<Figures figure="34-7">All four architectural approaches are the same</Figures>
+<Figures figure="34-7">四种架构方案其实是一样的</Figures>
 
 Moving from left to right, in the “package by layer” approach, the OrdersService and OrdersRepository interfaces need to be public, because they have inbound dependencies from classes outside of their defining package. In contrast, the implementation classes (OrdersServiceImpl and JdbcOrdersRepository) can be made more restrictive (package protected). Nobody needs to know about them; they are an implementation detail.
 
@@ -184,7 +184,7 @@ In the ports and adapters approach, the OrdersService and Orders interfaces have
 
 > 在端口与适配器模式中，OrderService 与 Orders 接口都有来自包外的依赖关系，所以需要 public 修饰符。同样，实现类可以设置为包范围内 protected，依赖在运行时注入。
 
-<Figures figure="34-8">Grayed-out types are where the access modifier can be made more restrictive</Figures>
+<Figures figure="34-8">灰色部分是可以收紧访问修饰符的类型</Figures>
 
 Finally, in the “package by component” approach, the OrdersComponent interface has an inbound dependency from the controller, but everything else can be made package protected. The fewer public types you have, the smaller the number of potential dependencies. There’s now no way9 that code outside this package can use the OrdersRepository interface or implementation directly, so we can rely on the compiler to enforce this architectural principle. You can do the same thing in .NET with the internal keyword, although you would need to create a separate assembly for every component.
 
@@ -234,7 +234,7 @@ This maps on nicely to the diagram (Figure 34.9) that many people use to summari
 
 > 这与图 34.9 完美对应，很多人都用这个方式来简化对端口和适配器架构的描述。基础设施部分对业务代码有一个编译期的依赖关系。
 
-<Figures figure="34-9">Domain and infrastructure code</Figures>
+<Figures figure="34-9">领域代码与基础设施代码</Figures>
 
 This approach to organizing source code will also work, but be aware of the potential trade-off. It’s what I call the “Périphérique anti-pattern of ports and adapters.” The city of Paris, France, has a ring road called the Boulevard Périphérique, which allows you to circumnavigate Paris without entering the complexities of the city. Having all of your infrastructure code in a single source code tree means that it’s potentially possible for infrastructure code in one area of your application (e.g., a web controller) to directly call code in another area of your application (e.g., a database repository), without navigating through the domain. This is especially true if you’ve forgotten to apply appropriate access modifiers to that code.
 

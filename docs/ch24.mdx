@@ -1,6 +1,6 @@
 # Chap24. PARTIAL BOUNDARIES 不完全边界
 
-![](/figures/un/CH-UN24.jpg)
+![隔着墙洞的对话](/figures/un/CH-UN24.jpg)
 
 Full-fledged architectural boundaries are expensive. They require reciprocal polymorphic Boundary interfaces, Input and Output data structures, and all of the dependency management necessary to isolate the two sides into independently compilable and deployable components. That takes a lot of work. It’s also a lot of work to maintain.
 
@@ -42,7 +42,7 @@ A simpler structure that serves to hold the place for later extension to a full-
 
 > 在图 24.1 中，你会看到一个临时占位的，将来可被替换成完整架构边界的更简单的结构。这个结构采用了传统的策略模式（strategy pattern）。如你所见，其 Client 使用的是一个由 ServiceImpl 类实现的 ServiceBoundary 接口。
 
-<Figures figure="24-1">The Strategy pattern</Figures>
+<Figures figure="24-1">策略模式</Figures>
 
 It should be clear that this sets the stage for a future architectural boundary. The necessary dependency inversion is in place in an attempt to isolate the Client from the ServiceImpl. It should also be clear that the separation can degrade pretty rapidly, as shown by the nasty dotted arrow in the diagram. Without reciprocal interfaces, nothing prevents this kind of backchannel other than the diligence and discipline of the developers and architects.
 
@@ -54,7 +54,7 @@ An even simpler boundary is the Facade pattern, illustrated in Figure 24.2. In t
 
 > 下面，我们再来看一个更简单的架构边界设计：采用门户模式（facade pattern），其架构如图 24.2 所示。在这种模式下，我们连依赖反转的工作都可以省了。这里的边界将只能由 Facade 类来定义，这个类的背后是一份包含了所有服务函数的列表，它会负责将 Client 的调用传递给对 client 不可见的服务函数。
 
-<Figures figure="24-2">The Facade pattern</Figures>
+<Figures figure="24-2">外观模式</Figures>
 
 Note, however, that the Client has a transitive dependency on all those service classes. In static languages, a change to the source code in one of the Service classes will force the Client to recompile. Also, you can imagine how easy backchannels are to create with this structure.
 

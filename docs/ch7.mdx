@@ -1,6 +1,6 @@
 # Chap7. SRP: THE SINGLE RESPONSIBILITY PRINCIPLE SRP：单一职责原则
 
-![](/figures/un/CH-UN07.jpg)
+![这是你的职责](/figures/un/CH-UN07.jpg)
 
 Of all the SOLID principles, the Single Responsibility Principle (SRP) might be the least well understood. That’s likely because it has a particularly inappropriate name. It is too easy for programmers to hear the name and then assume that it means that every module should do just one thing.
 
@@ -56,7 +56,7 @@ My favorite example is the Employee class from a payroll application. It has thr
 
 > 这是我最喜欢举的一个例子：某个工资管理程序中的 Employee 类有三个函数 calculatePay()、reportHours() 和 save()（见图 7.1）。
 
-<Figures figure="7-1">The Employee class</Figures>
+<Figures figure="7-1">Employee 类</Figures>
 
 This class violates the SRP because those three methods are responsible to three very different actors.
 
@@ -80,7 +80,7 @@ For example, suppose that the calculatePay() function and the reportHours() func
 
 > 例如，calculatePay() 函数和 reportHours() 函数使用同样的逻辑来计算正常工作时数。程序员为了避免重复编码，通常会将该算法单独实现为一个名为 regularHours() 的函数（见图 7.2）。
 
-<Figures figure="7-2">Shared algorithm</Figures>
+<Figures figure="7-2">共享算法</Figures>
 
 Now suppose that the CFO’s team decides that the way non-overtime hours are calculated needs to be tweaked. In contrast, the COO’s team in HR does not want that particular tweak because they use non-overtime hours for a different purpose.
 
@@ -140,13 +140,13 @@ Perhaps the most obvious way to solve the problem is to separate the data from t
 
 > 其中，最简单直接的办法是将数据与函数分离，设计三个类共同使用一个不包括函数的、十分简单的 EmployeeData 类（见图 7.3），每个类只包含与之相关的函数代码，互相不可见，这样就不存在互相依赖的情况了。
 
-<Figures figure="7-3">The three classes do not know about each other</Figures>
+<Figures figure="7-3">这三个类互相不知晓彼此的存在</Figures>
 
 The downside of this solution is that the developers now have three classes that they have to instantiate and track. A common solution to this dilemma is to use the Facade pattern (Figure 7.4).
 
 > 这种解决方案的坏处在于：程序员现在需要在程序里处理三个类。另一种解决办法是使用 Facade 设计模式（见图 7.4）。
 
-<Figures figure="7-4">The Facade pattern</Figures>
+<Figures figure="7-4">外观模式</Figures>
 
 The EmployeeFacade contains very little code. It is responsible for instantiating and delegating to the classes with the functions.
 
@@ -156,7 +156,7 @@ Some developers prefer to keep the most important business rules closer to the d
 
 > 当然，也有些程序员更倾向于把最重要的业务逻辑与数据放在一起，那么我们也可以选择将最重要的函数保留在 Employee 类中，同时用这个类来调用其他没那么重要的函数（见图 7.5）。
 
-<Figures figure="7-5">The most important method is kept in the original Employee class and used as a Facade for the lesser functions</Figures>
+<Figures figure="7-5">最重要的方法保留在原来的 Employee 类中，作为次要功能的外观</Figures>
 
 You might object to these solutions on the basis that every class would contain just one function. This is hardly the case. The number of functions required to calculate pay, generate a report, or save the data is likely to be large in each case. Each of those classes would have many private methods in them.
 

@@ -1,6 +1,6 @@
 # Chap20. BUSINESS RULES 业务逻辑
 
-![](/figures/un/CH-UN20.jpg)
+![谁在度量谁](/figures/un/CH-UN20.jpg)
 
 If we are going to divide our application into business rules and plugins, we’d better get a good grasp on just what business rules actually are. It turns out there are several different kinds.
 
@@ -40,7 +40,7 @@ For example, Figure 20.1 shows what our Loan entity might look like as a class i
 
 > 例如，在图 20.1 中，我们看到的是一个对应于借贷业务的实体类 Loan 的 UML 图。如你所见，该类中包含了三个关键业务数据，以及三个代表了其关键业务逻辑的接口。
 
-<Figures figure="20-1">Loan entity as a class in UML</Figures>
+<Figures figure="20-1">贷款实体的 UML 类表示</Figures>
 
 When we create this kind of class, we are gathering together the software that implements a concept that is critical to the business, and separating it from every other concern in the automated system we are building. This class stands alone as a representative of the business. It is unsullied with concerns about databases, user interfaces, or third-party frameworks. It could serve the business in any system, irrespective of how that system was presented, or how the data was stored, or how the computers in that system were arranged. The Entity is pure business and nothing else.
 
@@ -68,7 +68,7 @@ Figure 20.2 shows an example of a use case. Notice that in the last line it ment
 
 > 下面，让我们来看看图 20.2 中的这个用例。请注意，图 20.2 的最后一行中提到的“客户”，这里的客户是指代表客户的业务实体，其中包含了处理银行与客户之间关系的关键业务逻辑。
 
-<Figures figure="20-2">Example use case</Figures>
+<Figures figure="20-2">用例示例</Figures>
 
 Use cases contain the rules that specify how and when the Critical Business Rules within the Entities are invoked. Use cases control the dance of the Entities.
 

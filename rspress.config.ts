@@ -1,5 +1,6 @@
 import * as path from 'node:path';
 import { defineConfig } from '@rspress/core';
+import rehypeTranslation from './docs/_plugins/rehype-translation.mjs';
 
 // https://rspress.rs/api/config/config-basic
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
     "; Clean Code: A Handbook of Agile Software Craftsmanship 中文翻译" +
     '; 代碼整潔之道 馬丁 (Robert C. Martin)',
   base: '/Clean-Architecture-zh/',
+  ssg: false,
 
   // https://rspress.rs/api/config/config-theme
   themeConfig: {
@@ -99,19 +101,36 @@ export default defineConfig({
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/Cactus-proj/Clean-Architecture-zh',
+        content: 'https://github.com/znonymous29/Clean-Architecture-zh',
       },
     ],
 
     editLink: {
       docRepoBaseUrl:
-        'https://github.com/Cactus-proj/Clean-Architecture-zh/tree/main/docs',
+        'https://github.com/znonymous29/Clean-Architecture-zh/tree/main/docs',
     },
 
     lastUpdated: true,
   },
 
+  // 每页渲染的全局 UI 组件（顶层配置）：中英对照点击切换
+  globalUIComponents: [
+    path.join(__dirname, 'docs/_components/translation.tsx'),
+  ],
+
+  // 通过插件 API 注册（进程内引用传递，函数插件可正常到达 MDX 编译器）
+  plugins: [
+    {
+      name: 'translation-pair',
+      markdown: {
+        // 将「英文段落 + 中文引用」配对，实现点击中文切换英文显示
+        rehypePlugins: [rehypeTranslation],
+      },
+    },
+  ],
+
   markdown: {
+    crossCompilerCache: false,
     // 注册全局组件，所有 MDX 文档中可直接使用 <Figures /> 而无需 import
     globalComponents: [path.join(__dirname, 'docs/_components/figures.tsx')],
   },

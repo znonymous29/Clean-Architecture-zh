@@ -1,6 +1,6 @@
 # Chap14. COMPONENT COUPLING 组件耦合
 
-![](/figures/un/CH-UN14.jpg)
+![成双成对](/figures/un/CH-UN14.jpg)
 
 The next three principles deal with the relationships between components. Here again we will run into the tension between develop-ability and logical design. The forces that impinge upon the architecture of a component structure are technical, political, and volatile.
 
@@ -66,7 +66,7 @@ Consider the component diagram in Figure 14.1. It shows a rather typical structu
 
 > 下面让我们来看看图 14.1，该图展示了一个典型应用程序的组件结构。当然，这个应用程序的具体功能与我们要讨论的无关，真正重要的是其组件之间的依赖结构。我们应该可以注意到，该组件依赖结构所呈现的是一个有向图，图中的每个节点都是一个项目组件，依赖关系就是有向图中的边。
 
-<Figures figure="14-1">Typical component diagram</Figures>
+<Figures figure="14-1">一个典型的组件关系图</Figures>
 
 Notice one more thing: Regardless of which component you begin at, it is impossible to follow the dependency relationships and wind up back at that component. This structure has no cycles. It is a directed acyclic graph (DAG).
 
@@ -98,7 +98,7 @@ This cycle creates some immediate problems. For example, the developers working 
 
 > 这种循环依赖立刻就会给我们的项目带来麻烦。例如，当 Database 组件的程序员需要发布新版本时，他们需要与 Entities 组件进行集成。但现在由于出现了循环依赖，Database 组件就必须也要与 Authorizer 组件兼容，而 Authorizer 组件又依赖于 Interactors 组件。这样一来，Database 组件的发布就会变得非常困难。在这里，Entities、Authorizer 及 Interactors 这三个组件事实上被合并成一个更大的组件。这些组件的程序员现在会互相形成干扰，因为他们在开发中都必须使用完全相同的组件版本。
 
-<Figures figure="14-2">A dependency cycle</Figures>
+<Figures figure="14-2">一个依赖环</Figures>
 
 But this is just part of the trouble. Consider what happens when we want to test the Entities component. To our chagrin, we find that we must build and integrate with Authorizer and Interactors. This level of coupling between components is troubling, if not intolerable.
 
@@ -122,13 +122,13 @@ It is always possible to break a cycle of components and reinstate the dependenc
 
 > 1. 应用依赖反转原则（DIP）：在图 14.3 中，我们可以创建一个 User 类需要使用的接口，然后将这个接口放入 Entities 组件，并在 Authorizer 组件中继承它。这样就将 Entities 与 Authorizer 之间的依赖关系反转了，自然也就打破了循环依赖关系。
 
-<Figures figure="14-3">Inverting the dependency between Entities and Authorizer</Figures>
+<Figures figure="14-3">反转 Entities 与 Authorizer 之间的依赖</Figures>
 
 2. Create a new component that both Entities and Authorizer depend on. Move the class(es) that they both depend on into that new component (Figure 14.4).
 
 > 2. 创建一个新的组件，并让 Entities 与 Authorize 这两个组件都依赖于它。将现有的这两个组件中互相依赖的类全部放入新组件（如图 14.4 所示）。
 
-<Figures figure="14-4">The new component that both Entities and Authorizer depend on</Figures>
+<Figures figure="14-4">Entities 与 Authorizer 共同依赖的新组件</Figures>
 
 ### THE “JITTERS” “抖动”
 
@@ -202,13 +202,13 @@ The diagram in Figure 14.5 shows X, which is a stable component. Three component
 
 > 在图 14.5 中，X 是一个稳定的组件。因为有三个组件依赖着 X，所以 X 有三个不应该被修改的原因。这里就说 X 要对三个组件负责。另一方面，X 不依赖于任何组件，所以不会有任何原因导致它需要被变更，我们称它为“独立”组件。
 
-<Figures figure="14-5">X: a stable component</Figures>
+<Figures figure="14-5">X：一个稳定的组件</Figures>
 
 Figure 14.6 shows Y, which is a very unstable component. No other components depend on Y, so we say that it is irresponsible. Y also has three components that it depends on, so changes may come from three external sources. We say that Y is dependent.
 
 > 下面再来看看图 14.6 中的 Y 组件，这是一个非常不稳定的组件。由于没有其他的组件依赖 Y，所以 Y 并不对任何组件负责。但因为 Y 同时依赖于三个组件，所以它的变更就可能由三个不同的源产生。这里就说 Y 是有依赖性的组件。
 
-<Figures figure="14-6">Y: a very unstable component</Figures>
+<Figures figure="14-6">Y：一个非常不稳定的组件</Figures>
 
 ### STABILITY METRICS 稳定性指标
 
@@ -230,7 +230,7 @@ The Fan-in and Fan-out metrics1 are calculated by counting the number of classes
 
 > 在这里，Fan-in 和 Fan-out 这两个指标是通过统计和组件内部类有依赖的组件外部类的数量来计算的，具体如图 14.7 所示。
 
-<Figures figure="14-7">Our example</Figures>
+<Figures figure="14-7">我们的例子</Figures>
 
 Let’s say we want to calculate the stability of the component Cc. We find that there are three classes outside Cc that depend on classes in Cc. Thus, Fan-in = 3. Moreover, there is one class outside Cc that classes in Cc depend on. Thus, Fan-out = 1 and I = 1/4.
 
@@ -262,13 +262,13 @@ The changeable components are on top and depend on the stable component at the b
 
 > 在该系统组件结构图中，可变更的组件位于顶层，同时依赖于底层的稳定组件。将不稳定组件放在该结构图的顶层是很有用的，因为这样我们就可以很容易地找出箭头向上的依赖关系，而这些关系是违反 SDP（以及后面将会讨论的 ADP）的。
 
-<Figures figure="14-8">An ideal configuration for a system with three components</Figures>
+<Figures figure="14-8">一个三组件系统的理想配置</Figures>
 
 The diagram in Figure 14.9 shows how the SDP can be violated.
 
 > 下面再通过图 14.9 来看看违反 SDP 的情况：
 
-<Figures figure="14-9">SDP violation</Figures>
+<Figures figure="14-9">违反 SDP</Figures>
 
 Flexible is a component that we have designed to be easy to change. We want Flexible to be unstable. However, some developer, working in the component named Stable, has hung a dependency on Flexible. This violates the SDP because the I metric for Stable is much smaller than the I metric for Flexible. As a result, Flexible will no longer be easy to change. A change to Flexible will force us to deal with Stable and all its dependents.
 
@@ -278,13 +278,13 @@ To fix this problem, we somehow have to break the dependence of Stable on Flexib
 
 > 如果想要修复这个问题，就必须要将 stable 与 Flexible 这两个组件之间的依赖关系打破。为此，我们就需要了解这个依赖关系到底为什么会存在，这里假设是因为 Stable 组件中的某个类 U 需要使用 Flexible 组件中的一个类 C，如图 14.10 所示：
 
-<Figures figure="14-10">U within Stable uses C within Flexible</Figures>
+<Figures figure="14-10">Stable 中的 U 使用 Flexible 中的 C</Figures>
 
 We can fix this by employing the DIP. We create an interface class called US and put it in a component named UServer. We make sure that this interface declares all the methods that U needs to use. We then make C implement this interface as shown in Figure 14.11. This breaks the dependency of Stable on Flexible, and forces both components to depend on UServer. UServer is very stable (I = 0), and Flexible retains its necessary instability (I = 1). All the dependencies now flow in the direction of decreasing I.
 
 > 我们可以利用 DIP 来修复这个问题。具体来说就是创造一个 UServer 组件，并在其中设置一个 US 接口类。然后，确保这个接口类中包含了所有 U 需要使用的函数，再让 C 实现这个接口，如图 14.11 所示。这样一来，我们就将从 Stable 到 Flexible 的这条依赖关系打破了，强迫这两个组件都依赖于 UServer。现在，UServer 组件会是非常稳定的（I=0），而 Flexibile 组件则会依然保持不稳定的状态（I=1），结构图中所有的依赖关系都流向 I 递减的方向了。
 
-<Figures figure="14-11">C implements the interface class US</Figures>
+<Figures figure="14-11">C 实现了接口类 US</Figures>
 
 ### Abstract Components 抽象组件
 
@@ -356,7 +356,7 @@ We are now in a position to define the relationship between stability (I) and ab
 
 > 现在，我们可以来定义组件的稳定性 I 与其抽象化程度 A 之间的关系了，具体如图 14.12 所示。在该图中，纵轴为 A 值，横轴为 I 值。如果我们将两个“设计良好”的组件绘制在该图上，那么最稳定的、包含了无限抽象类的组件应该位于左上角(0,1)，最不稳定的、最具体的组件应该位于右下角(1,0)。
 
-<Figures figure="14-12">The I/A graph</Figures>
+<Figures figure="14-12">I/A 关系图</Figures>
 
 Not all components fall into one of these two positions, because components often have degrees of abstraction and stability. For example, it is very common for one abstract class to derive from another abstract class. The derivative is an abstraction that has a dependency. Thus, though it is maximally abstract, it will not be maximally stable. Its dependency will decrease its stability.
 
@@ -366,7 +366,7 @@ Since we cannot enforce a rule that all components sit at either (0, 1) or (1, 0
 
 > 既然不能强制要求所有的组件都处于(0,1)和(1,0)这两个位置上，那么就必须假设 A/I 图上存在着一个合理组件的区间。而这个区间应该可以通过排除法推导出来，也就是说，我们可以先找出那些组件不应该处于的位置（请参考图 14.13）：
 
-<Figures figure="14-13">Zones of exclusion</Figures>
+<Figures figure="14-13">排除区</Figures>
 
 ### The Zone of Pain 痛苦区
 
@@ -436,13 +436,13 @@ In the scatterplot in Figure 14.14, we see that the bulk of the components lie a
 
 > 在图 14.14 中，我们可以看到大部分的组件都位于主序列附近，但是有些组件处于平均值的标准差（Z=1）以外。这些组件值得被重点分析，它们要么过于抽象依赖不足，要么过于具体而被依赖得太多。
 
-<Figures figure="14-14">Scatterplot of the components</Figures>
+<Figures figure="14-14">组件散点图</Figures>
 
 Another way to use the metrics is to plot the D metric of each component over time. The graph in Figure 14.15 is a mock-up of such a plot. You can see that some strange dependencies have been creeping into the Payroll component over the last few releases. The plot shows a control threshold at D = 0.1. The R2.1 point has exceeded this control limit, so it would be worth our while to find out why this component is so far from the main sequence.
 
 > D 指标的另外一种用法是按时间来跟踪每个组件的值，下面用图 14.15 来做一个示范。在该图中可以看到，Payroll 组件在最近几次发布中累积了一些意外的对外依赖。图中的 Q=0.1 是组件的达标红线，R2.1 这个值已经超出了红线范围，这就告诉我们现在值得花一些精力来找出这个组件偏离主序列线的原因了。
 
-<Figures figure="14-15">Plot of D for a single component over time</Figures>
+<Figures figure="14-15">单个组件的 D 值随时间的变化曲线</Figures>
 
 ## CONCLUSION 本章小结
 

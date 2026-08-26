@@ -1,6 +1,6 @@
 # Chap29. CLEAN EMBEDDED ARCHITECTURE 整洁的嵌入式架构
 
-![](/figures/un/CH-UN29.jpg)
+![代码考古](/figures/un/CH-UN29.jpg)
 
 By James Grenning
 
@@ -230,13 +230,13 @@ Layering comes in many flavors. Let’s start with three layers, as shown in Fig
 
 > 分层可以有很多种方式，这里先按图 29.1 所示的设计将系统分成三层。首先，底层是硬件层。正如 Doug 警告我们的那样，由于科技的进步与摩尔定律，硬件是一定会改变的。旧的硬件不见将会被淘汰，新的硬件部件可能耗电量更少，或者性能更好，或者价格更便宜。不管硬件更新的原因是什么，作为嵌入式工程师，我们都不会希望这些不可避免的硬件变动带来更多的工作量。
 
-<Figures figure="29-1">Three layers</Figures>
+<Figures figure="29-1">三个层次</Figures>
 
 The separation between hardware and the rest of the system is a given—at least once the hardware is defined (Figure 29.2). Here is where the problems often begin when you are trying to pass the App-titude test. There is nothing that keeps hardware knowledge from polluting all the code. If you are not careful about where you put things and what one module is allowed to know about another module, the code will be very hard to change. I’m not just talking about when the hardware changes, but when the user asks for a change, or when a bug needs to be fixed.
 
 > 硬件与系统其他部分的分隔是既定的——至少在硬件设计完成之后如此（如图 29.2 所示）。这也是在我们试图通过程序适用测试之时往往会发生问题的地方。因为没有什么东西可以真正阻碍硬件实现细节污染到应用代码。如果我们在构建代码的时候不够小心，没有小心安排哪些模块之间可以互相依赖，代码很快就非常难以更改了。请注意，这里所说的变更不仅仅是指来自硬件的变更，还包括用户的功能性变更、修复代码中的 Bug。
 
-<Figures figure="29-2">Hardware must be separated from the rest of the system</Figures>
+<Figures figure="29-2">硬件必须与系统其他部分分离</Figures>
 
 Software and firmware intermingling is an anti-pattern. Code exhibiting this anti-pattern will resist changes. In addition, changes will be dangerous, often leading to unintended consequences. Full regression tests of the whole system will be needed for minor changes. If you have not created externally instrumented tests, expect to get bored with manual tests—and then you can expect new bug reports.
 
@@ -248,13 +248,13 @@ The line between software and firmware is typically not so well defined as the l
 
 > 软件与固件之间的边界往往没有代码与硬件之间的边界那么清晰，如图 29.3 所示。
 
-<Figures figure="29-3">The line between software and firmware is a bit fuzzier than the line between code and hardware</Figures>
+<Figures figure="29-3">软件与固件之间的界线比代码与硬件之间的界线更模糊</Figures>
 
 One of your jobs as an embedded software developer is to firm up that line. The name of the boundary between the software and the firmware is the hardware abstraction layer (HAL) (Figure 29.4). This is not a new idea: It has been in PCs since the days before Windows.
 
 > 所以，我们的工作之一就是将这个边界定义得更清晰一些。软件与固件之间的边界被称为硬件抽象层（HAL），如图 29.4 所示。这不是一个新概念，它在 PC 上的存在甚至可以追溯到 Windows 诞生之前。
 
-<Figures figure="29-4">The hardware abstraction layer</Figures>
+<Figures figure="29-4">硬件抽象层</Figures>
 
 The HAL exists for the software that sits on top of it, and its API should be tailored to that software’s needs. As an example, the firmware can store bytes and arrays of bytes into flash memory. In contrast, the application needs to store and read name/value pairs to some persistence mechanism. The software should not be concerned that the name/value pairs are stored in flash memory, a spinning disk, the cloud, or core memory. The HAL provides a service, and it does not reveal to the software how it does it. The flash implementation is a detail that should be hidden from software.
 
@@ -409,13 +409,13 @@ The software accesses the services of the operating environment through the OS. 
 
 > 软件通过操作系统来访问运行环境服务。操作系统是将软件与固件隔离的那一层（见图 29.5），直接使用操作系统服务可能会带来问题。例如，如果更换了 RTOS 操作系统厂商，授权费用提高，或者质量下降怎么办？如果需求发生变化，RTOS 无法满足怎么办？很多代码都需要变动，不仅要更改语法适应新操作系统 API，很有可能需要重新适应新操作系统的语义与原语。
 
-<Figures figure="29-5">Adding in an operating system</Figures>
+<Figures figure="29-5">加入操作系统</Figures>
 
 A clean embedded architecture isolates software from the operating system, through an operating system abstraction layer (OSAL) (Figure 29.6). In some cases, implementing this layer might be as simple as changing the name of a function. In other cases, it might involve wrapping several functions together.
 
 > 整洁的嵌入式架构会引入操作系统抽象层（OSAL，如图 29.6 所示），将软件与操作系统分割开。在某些情况下，实现这个抽象层就像给函数改个名字那么简单。而在另一些情况下，则需要将几个函数封装在一起。
 
-<Figures figure="29-6">The operating system abstraction layer</Figures>
+<Figures figure="29-6">操作系统抽象层</Figures>
 
 If you have ever moved your software from one RTOS to another, you know it is painful. If your software depended on an OSAL instead of the OS directly, you would largely be writing a new OSAL that is compatible with the old OSAL. Which would you rather do: modify a bunch of complex existing code, or write new code to a defined interface and behavior? This is not a trick question. I choose the latter.
 

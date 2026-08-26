@@ -1,5 +1,7 @@
 # 《架构整洁之道》中文翻译
 
+在线阅读： <https://znonymous29.github.io/Clean-Architecture-zh/>
+
 ## 前言
 
 ## 目录
@@ -56,7 +58,7 @@
 [rspress]: https://rspress.rs/zh/
 
 ```sh
-git clone https://github.com/Cactus-proj/Clean-Architecture-zh.git
+git clone https://github.com/znonymous29/Clean-Architecture-zh.git
 cd Clean-Architecture-zh/
 npm install         # 安装 Rspress
 npm run docs:dev    # 编译并打开网页预览

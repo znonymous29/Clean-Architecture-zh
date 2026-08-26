@@ -1,6 +1,6 @@
 # Chap1. WHAT IS DESIGN AND ARCHITECTURE? 设计与架构到底是什么
 
-![](/figures/un/CH-UN01.jpg)
+![面对「架构」的困惑](/figures/un/CH-UN01.jpg)
 
 There has been a lot of confusion about design and architecture over the years. What is design? What is architecture? What are the differences between the two?
 
@@ -50,7 +50,7 @@ First, let’s look at the growth of the engineering staff. I’m sure you’ll 
 
 > 首先，我们来看一下工程师团队规模的增长。你肯定认为这个增长趋势是特别可喜的，像图 1.1 中的这种增长线条一定是公司业务取得巨大成功的直观体现。
 
-<Figures figure="1-1">Growth of the engineering staff</Figures>
+<Figures figure="1-1">工程人员的增长</Figures>
 
 Reproduced with permission from a slide presentation by Jason Gorman
 
@@ -58,7 +58,7 @@ Now let’s look at the company’s productivity over the same time period, as m
 
 > 现在再让我们来看一下整个公司同期的生产效率（productivity），这里用简单的代码行数作为指标（参见图 1.2）。
 
-<Figures figure="1-2">Productivity over the same period of time</Figures>
+<Figures figure="1-2">同期的生产力变化</Figures>
 
 Clearly something is going wrong here. Even though every release is supported by an ever-increasing number of developers, the growth of the code looks like it is approaching an asymptote.
 
@@ -76,7 +76,7 @@ What caused this remarkable change in productivity? Why was the code 40 times mo
 
 > 究竟是什么因素造成生产力的大幅变化呢？为什么第 8 代产品的构建成本要 比第 1 代产品高 40 倍？
 
-<Figures figure="1-3">Cost per line of code over time</Figures>
+<Figures figure="1-3">代码单行成本随时间的变化</Figures>
 
 ### THE SIGNATURE OF A MESS 乱麻系统的特点
 
@@ -88,7 +88,7 @@ Figure 1.4 shows what this curve looks like to the developers. They started out 
 
 > 图 1.4 展示了系统开发者的切身体会。他们一开始的效率都接近 100%，然而伴随着每次产品的发布，他们的生产力直线下降。到了产品的第 4 版本时，很明显大家的生产力已经不可避免地趋近为零了。
 
-<Figures figure="1-4">Productivity by release</Figures>
+<Figures figure="1-4">每次发布的生产力</Figures>
 
 From the developers’ point of view, this is tremendously frustrating, because everyone is working hard. Nobody has decreased their effort.
 
@@ -104,7 +104,7 @@ If you think that’s bad, imagine what this picture looks like to the executive
 
 > 如果你觉得开发者们这样就已经够苦了，那么就再想想公司髙管们的感受吧! 请看图 1.5，该部门月工资同期图。
 
-<Figures figure="1-5">Monthly development payroll by release</Figures>
+<Figures figure="1-5">每次发布的月度开发人力成本</Figures>
 
 Release 1 was delivered with a monthly payroll of a few hundred thousand dollars. The second release cost a few hundred thousand more. By the eighth release monthly payroll was `$20` million, and climbing.
 
@@ -166,7 +166,7 @@ Consider the results of a remarkable experiment performed by Jason Gorman depict
 
 > 图 1.6 展示的是 Jason Gorman 进行的一次为期 6 天的实验。在该实验中，Jaosn 每天都编写一段代码，功能是将一个整数转化为相应罗马数字的字符串。当事先定义好的一个测试集完全通过时，即认为当天工作完成。每天实验的时长不超过 30 分钟。第一天、第三天和第五天，Jason 在编写代码的过程中采用了业界知名的优质代码方法论：测试驱动开发（TDD），而其他三天他则直接从头开始编写代码。
 
-<Figures figure="1-6">Time to completion by iterations and use/non-use of TDD</Figures>
+<Figures figure="1-6">采用/不采用 TDD 时各迭代轮次所需的完成时间</Figures>
 
 First, notice the learning curve apparent in Figure 1.6. Work on the latter days is completed more quickly than the former days. Notice also that work on the TDD days proceeded approximately 10% faster than work on the non-TDD days, and that even the slowest TDD day was faster than the fastest non-TDD day.
 

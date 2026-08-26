@@ -1,6 +1,6 @@
 # Chap33. CASE STUDY: VIDEO SALES 案例分析：视频销售网站
 
-![](/figures/un/CH-UN33.jpg)
+![录像带的故事](/figures/un/CH-UN33.jpg)
 
 Now it’s time to put these rules and thoughts about architecture together into a case study. This case study will be short and simple, yet will depict both the process a good architect uses and the decisions that such an architect makes.
 
@@ -38,7 +38,7 @@ Figure 33.1 shows a typical use-case analysis.
 
 > 下面，我们通过图 33.1 来示范一次典型的用例分析。
 
-<Figures figure="33-1">A typical use-case analysis</Figures>
+<Figures figure="33-1">一个典型的用例分析</Figures>
 
 The four main actors are evident. According to the Single Responsibility Principle, these four actors will be the four primary sources of change for the system. Every time some new feature is added, or some existing feature is changed, that step will be taken to serve one of these actors. Therefore we want to partition the system such that a change to one actor does not affect any of the other actors.
 
@@ -74,7 +74,7 @@ Note the special components for the Catalog View and the Catalog Presenter. This
 
 > 值得注意的是，这里有两个特殊的组件：目录视图（Catalog View）和目录展示器（Catalog Presenter）。这就是我应对查看目录列表这个抽象用例的方法。我假设这些视图和展示器将会被编写为抽象类，而继承它们的组件将会包括它们的派生类。
 
-<Figures figure="33-2">A preliminary component architecture</Figures>
+<Figures figure="33-2">初步的组件架构</Figures>
 
 Would I really break the system up into all these components, and deliver them as .jar or .dll files? Yes and no. I would certainly break the compile and build environment up this way, so that I could build independent deliverables like that. I would also reserve the right to combine all those deliverables into a smaller number of deliverables if necessary. For example, given the partitioning in Figure 33.2, it would be easy to combine them into five .jar files—one for views, presenters, interactors, controllers, and utilities, respectively. I could then independently deploy the components that are most likely to change independently of each other.
 

@@ -9,7 +9,7 @@
     "typescript": "^7.0.2"
   },
   "scripts": {
-    "docs:dev": "rspress dev docs",
+    "docs:dev": "rspress dev docs --host",
     "docs:build": "rspress build docs",
     "docs:preview": "rspress preview docs",
     "md:lint": "markdownlint \"**/*.{md,mdx}\" --ignore node_modules",

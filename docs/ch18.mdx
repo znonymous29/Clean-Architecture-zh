@@ -1,6 +1,6 @@
 # Chap18. BOUNDARY ANATOMY 边界剖析
 
-![](/figures/un/CH-UN18.jpg)
+![工地上的讨论](/figures/un/CH-UN18.jpg)
 
 The architecture of a system is defined by a set of software components and the boundaries that separate them. Those boundaries come in many different forms. In this chapter we’ll look at some of the most common.
 
@@ -42,7 +42,7 @@ In Figure 18.1, the flow of control crosses the boundary from left to right. The
 
 > 在图 18.1 中，我们可以看到控制流跨越边界的方向是从左向右的，Client 调用了 Service 上的函数 `f()`，并向它传递了一个 Data 实例。这里的 `<DS>` 标记是指 Data 是一个数据结构。Data 实例的具体传递方法可以是函数的调用参数，也可以是其他更复杂的传递方式。读者在这里需要注意的是，Data 的定义位于边界的被调用方一侧。
 
-<Figures figure="18-1">Flow of control crosses the boundary from a lower level to a higher level</Figures>
+<Figures figure="18-1">控制流从低层跨越边界进入高层</Figures>
 
 When a high-level client needs to invoke a lower-level service, dynamic polymorphism is used to invert the dependency against the flow of control. The runtime dependency opposes the compile-time dependency.
 
@@ -52,7 +52,7 @@ In Figure 18.2, the flow of control crosses the boundary from left to right as b
 
 > 在图 18.2 中，控制流跨越边界的方向与之前是一样的，都是从左至右的。这里是高层组件 Client 通过 Service 接口调用了低层组件 Servicelmpl 上的函数 `f()`。但请读者注意，图 18.2 中所有的依赖关系却都是从右向左跨越边界的，方向是由低层组件指向高层组件的。同时，我们也应该注意到，这一次数据结构的定义是位于调用方这一侧的。
 
-<Figures figure="18-2">Crossing the boundary against the flow of control</Figures>
+<Figures figure="18-2">逆着控制流方向跨越边界</Figures>
 
 Even in a monolithic, statically linked executable, this kind of disciplined partitioning can greatly aid the job of developing, testing, and deploying the project. Teams can work independently of each other on their own components without treading on each other’s toes. High-level components remain independent of lower-level details.
 

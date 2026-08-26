@@ -1,6 +1,6 @@
 # Chap11. DIP: THE DEPENDENCY INVERSION PRINCIPLE DIP：依赖反转原则
 
-![](/figures/un/CH-UN11.jpg)
+![环环相扣](/figures/un/CH-UN11.jpg)
 
 The Dependency Inversion Principle (DIP) tells us that the most flexible systems are those in which source code dependencies refer only to abstractions, not to concretions.
 
@@ -70,7 +70,7 @@ The diagram in Figure 11.1 shows the structure. The Application uses the Concret
 
 > 下面，我们通过图 11.1 来描述一下该设计模式的结构。如你所见 Application 类是通过 Service 接口来使用 Concretelmpl 类的。然而，Application 类还是必须要构造 Concretelmpl 类实例。于是，为了避免在源代码层次上引入对 Concretelmpl 类具体实现的依赖，我们现在让 Application 类去调用 ServiceFactory 接口的 makeSvc 方法。这个方法就由 ServiceFactorylmpl 类来具体提供，它是 ServiceFactory 的一个衍生类。该方法的具体实现就是初始化一个 Concretelmpl 类的实例，并且将其以 Service 类型返回。
 
-<Figures figure="11-1">Use of the Abstract Factory pattern to manage the dependency</Figures>
+<Figures figure="11-1">使用抽象工厂模式来管理依赖</Figures>
 
 The curved line in Figure 11.1 is an architectural boundary. It separates the abstract from the concrete. All source code dependencies cross that curved line pointing in the same direction, toward the abstract side.
 

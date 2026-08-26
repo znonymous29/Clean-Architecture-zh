@@ -1,6 +1,6 @@
 # Chap6. FUNCTIONAL PROGRAMMING 函数式编程
 
-![](/figures/un/CH-UN06.jpg)
+![函数式编程的拥趸](/figures/un/CH-UN06.jpg)
 
 In many ways, the concepts of functional programming predate programming itself. This paradigm is strongly based on the l-calculus invented by Alonzo Church in the 1930s.
 
@@ -112,7 +112,7 @@ One of the most common compromises in regard to immutability is to segregate the
 
 > 一种常见方式是将应用程序，或者是应用程序的内部服务进行切分，划分为可变的和不可变的两种组件。不可变组件用纯函数的方式来执行任务，期间不更改任何状态。这些不可变的组件将通过与一个或多个非函数式组件通信的方式来修改变量状态（参见图 6.1）。
 
-<Figures figure="6-1">Mutating state and transactional memory</Figures>
+<Figures figure="6-1">状态修改与事务内存</Figures>
 
 Since mutating state exposes those components to all the problems of concurrency, it is common practice to use some kind of transactional memory to protect the mutable variables from concurrent updates and race conditions.
 

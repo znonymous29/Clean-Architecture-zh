@@ -1,6 +1,6 @@
 # Chap19. POLICY AND LEVEL 策略与层次
 
-![](/figures/un/CH-UN19.jpg)
+![层次分明的神庙](/figures/un/CH-UN19.jpg)
 
 Software systems are statements of policy. Indeed, at its core, that’s all a computer program actually is. A computer program is a detailed description of the policy by which inputs are transformed into outputs.
 
@@ -36,7 +36,7 @@ The data flow diagram in Figure 19.1 depicts a simple encryption program that re
 
 > 在图 19.1 中，我们看到的是一个简单加密程序的数据流向图，该程序从输入设备读取字符，然后用查表法转换这些字符'并将转换后的字符输出到输出设备。我们将图中数据的流向用弯曲实心箭头标识了出来，而对于经精妙设计过的源码中的依赖关系则使用直虚线来标识。
 
-<Figures figure="19-1">A simple encryption program</Figures>
+<Figures figure="19-1">一个简单的加密程序</Figures>
 
 The Translate component is the highest-level component in this system because it is the component that is farthest from the inputs and outputs.1
 
@@ -64,7 +64,7 @@ A better architecture for this system is shown in the class diagram in Figure 19
 
 > 更好的系统架构设计应如图 19.2 所示。请注意图 19.2 中被虚线框起来的 Encrypt 类及其两个接口 CharReader 和 CharWriter。所有的依赖关系都指向了边界内部。这一切都说明它是系统中最高层次的组件。
 
-<Figures figure="19-2">Class diagram showing a better architecture for the system</Figures>
+<Figures figure="19-2">展示该系统更好架构的类图</Figures>
 
 ConsoleReader and ConsoleWriter are shown here as classes. They are low level because they are close to the inputs and outputs.
 
@@ -90,7 +90,7 @@ Another way to look at this issue is to note that lower-level components should 
 
 > 从另一个角度来说，低层组件应该成为高层组件的插件。图 19.3 中的组件图展示了这种关系，我们可以看到 Encryption 组件对 IODevices 组件的情况一无所知，而 IODevices 组件则依赖于 Encryption 组件。
 
-<Figures figure="19-3">Lower-level components should plug in to higher-level components</Figures>
+<Figures figure="19-3">低层组件应该插入高层组件</Figures>
 
 ## CONCLUSION 本章小结
 
