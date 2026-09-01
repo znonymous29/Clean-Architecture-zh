@@ -16,7 +16,7 @@
     "md:fix": "markdownlint --fix \"**/*.{md,mdx}\" --ignore node_modules"
   },
   "dependencies": {
-    "@rspress/core": "^2.0.19",
+    "@rspress/core": "^2.0.21",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   }
